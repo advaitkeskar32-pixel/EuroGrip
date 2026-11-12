@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ensure AI Lab is present in navigation if not already there
   const navLinks = nav.querySelector("nav");
+  if (navLinks && !navLinks.querySelector("a[href='performance.html']")) {
+    const performanceLink = document.createElement("a");
+    performanceLink.href = "performance.html";
+    performanceLink.textContent = "Performance";
+    if (window.location.pathname.endsWith("performance.html")) {
+      performanceLink.className = "active";
+    }
+    navLinks.appendChild(performanceLink);
+  }
   if (navLinks && !navLinks.querySelector("a[href='intelligence.html']")) {
     const aiLink = document.createElement("a");
     aiLink.href = "intelligence.html";

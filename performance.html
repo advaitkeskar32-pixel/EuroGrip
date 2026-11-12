@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track campaign KPIs, explore your CSV data, and export a Eurogrip campaign report.">
+  <title>Performance &amp; Reports — Eurogrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-nav.js" defer></script>
+  <script src="performance.js" defer></script>
+</head>
+<body class="performance-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav page-nav">
+    <a class="brand" href="index.html"><span class="brand-mark"><span></span></span><span>EUROGRIP</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="challenge.html">Challenge</a><a href="segments.html">Segments</a><a href="budget.html">Budget</a>
+      <a href="roadmap.html">Roadmap</a><a href="workspace.html">Workspace</a><a href="intelligence.html">AI Lab</a>
+    </nav>
+    <button class="palette-trigger" type="button" aria-label="Open Command Palette"><kbd>⌘K</kbd> <span>Actions</span></button>
+  </header>
+  <main>
+    <section class="performance-hero">
+      <div>
+        <p class="section-number">08 / MEASURE &amp; LEARN</p>
+        <h1>Campaign<br><em>performance.</em></h1>
+      </div>
+      <p>Track progress against plan, bring your own rider data, and export a campaign report.</p>
+    </section>
+    <section class="performance-section" aria-labelledby="tracker-title">
+      <div class="performance-section-heading">
+        <div><p class="section-number">01 / CAMPAIGN PERFORMANCE TRACKER</p><h2 id="tracker-title">Targets versus progress</h2></div>
+        <label class="performance-select">KPI
+          <select id="tracker-kpi">
+            <option value="engagement">Rider engagement</option>
+            <option value="dealers">Dealer participation</option>
+            <option value="shops">Tyre Finder shop coverage</option>
+            <option value="cards">Rider Card registrations</option>
+            <option value="consideration">Premium brand consideration</option>
+          </select>
+        </label>
+      </div>
+      <p class="simulation-note"><strong>SIMULATED DEMO DATA</strong> Monthly actuals shown below are illustrative and are not live campaign results.</p>
+      <div class="tracker-kpis" id="tracker-kpis"></div>
+      <div class="tracker-chart-card">
+        <div class="tracker-chart-heading"><div><strong id="chart-kpi-title">Rider engagement</strong><small>Monthly target vs. simulated actual</small></div><div class="chart-legend"><span><i class="legend-target"></i>Target</span><span><i class="legend-actual"></i>Actual (simulated)</span></div></div>
+        <div class="tracker-chart" id="tracker-chart" role="img" aria-label="Monthly target and simulated actual chart"></div>
+      </div>
+    </section>
+    <section class="performance-section dataset-section" aria-labelledby="dataset-title">
+      <div class="performance-section-heading">
+        <div><p class="section-number">02 / BRING YOUR DATA</p><h2 id="dataset-title">Explore a CSV</h2></div>
+        <span class="dataset-private-note">Processed in this browser only</span>
+      </div>
+      <p>Upload rider or campaign data to review its columns, segment mix, and numeric summaries. CSV files up to 5 MB are supported.</p>
+      <label class="upload-control" for="dataset-file">Choose a CSV file<input id="dataset-file" type="file" accept=".csv,text/csv"></label>
+      <p id="dataset-status" class="dataset-status" role="status" aria-live="polite">No file uploaded.</p>
+      <div id="dataset-results" class="dataset-results" hidden></div>
+    </section>
+    <section class="performance-section report-section" aria-labelledby="report-title">
+      <div class="performance-section-heading">
+        <div><p class="section-number">03 / CAMPAIGN REPORT</p><h2 id="report-title">Take the plan with you</h2></div>
+        <div class="report-actions"><button type="button" id="download-report">Download CSV</button><button type="button" id="print-report">Print / Save PDF</button></div>
+      </div>
+      <p>The report uses your current campaign workspace inputs, including selected segment, channel budget distribution, roadmap and projected KPIs.</p>
+      <article id="campaign-report" class="campaign-report"></article>
+    </section>
+  </main>
+</body>
+</html>

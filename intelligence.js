@@ -579,6 +579,37 @@ function updateMMMDisplay(gradNorm = 0.48) {
   document.getElementById("alloc-kpi-gig").textContent = `${Math.round(50000 * (gigSpend / 18)).toLocaleString("en-IN")} cards`;
   document.getElementById("alloc-kpi-premium").textContent = `${Math.round(100 * (premiumSpend / 18))} trials`;
 
+  const explanations = {
+    blended: {
+      reason: "Balanced blended response across commuter, gig, premium and shared-brand channels.",
+      benefit: "All three rider segments, with shared spend supporting brand reach.",
+      upside: "Diversifies exposure and reduces dependence on one response curve.",
+      risk: "A balanced mix may underweight the strongest short-term opportunity."
+    },
+    gig: {
+      reason: "The optimizer gives additional weight to the gig-worker response curve.",
+      benefit: "High-mileage gig riders and Rider Card acquisition.",
+      upside: "Can focus resources on uptime and rider-hub activation.",
+      risk: "A stronger gig focus may reduce retail or premium reach."
+    },
+    retail: {
+      reason: "The optimizer gives additional weight to the commuter/retail response curve.",
+      benefit: "Commuters and dealers supporting Tyre Finder shop coverage.",
+      upside: "Can deepen local availability and mechanic-led recommendations.",
+      risk: "Retail activation may take longer to scale and verify."
+    },
+    premium: {
+      reason: "The optimizer gives additional weight to the premium response curve.",
+      benefit: "Premium riders reached through clubs, creators and track experiences.",
+      upside: "Can strengthen product proof and premium consideration.",
+      risk: "Experiential reach can be narrower and costlier per rider."
+    }
+  }[mmmState.objective];
+  document.getElementById("mmm-reason").textContent = explanations.reason;
+  document.getElementById("mmm-benefit").textContent = explanations.benefit;
+  document.getElementById("mmm-upside").textContent = explanations.upside;
+  document.getElementById("mmm-risk").textContent = explanations.risk;
+
   drawResponseCurves();
 }
 

@@ -46,6 +46,29 @@ function generateWorkspace(persist = true) {
   document.getElementById("workspace-kpi").textContent =
     `Track activation monthly, then reallocate if shop, card and trial conversion misses the phase target.`;
 
+  const explanation = {
+    Commuter: {
+      reason: `Your plan prioritizes ${shops.toLocaleString("en-IN")} shop activations and broad access within a ₹${budget} crore budget.`,
+      upside: "Local fitment support and mechanic advocacy can make the brand easier to find and trust.",
+      risk: "Retail rollout can be slower than planned; validate shop activation before expanding spend."
+    },
+    "Gig worker": {
+      reason: `The ${cards.toLocaleString("en-IN")} Rider Card target and your gig-worker priority favor uptime-led offers near rider hubs.`,
+      upside: "Convenient fitting and predictable offers can help reduce downtime for high-mileage riders.",
+      risk: "Hub coverage and offer economics vary by city; test repeat usage before scaling."
+    },
+    "Premium rider": {
+      reason: `${trials.toLocaleString("en-IN")} club trials and a premium priority favor product proof and experiential activation.`,
+      upside: "Track and club demonstrations can build credible performance consideration among enthusiasts.",
+      risk: "Experiential reach may be narrower and costlier; measure trial-to-purchase conversion."
+    }
+  }[segment];
+  document.getElementById("recommendation-reason").textContent = explanation.reason;
+  document.getElementById("recommendation-segment").textContent =
+    `${segment} riders, supported by the selected campaign targets.`;
+  document.getElementById("recommendation-upside").textContent = explanation.upside;
+  document.getElementById("recommendation-risk").textContent = explanation.risk;
+
   const forecastPressure = shops / 5000 + cards / 50000 + trials / 100;
   const monthly = [];
   for (let month = 1; month <= months; month++) {
