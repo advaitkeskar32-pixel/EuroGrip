@@ -1450,4 +1450,58 @@ function initCopilot() {
       window.location.href = "workspace.html";
     });
   }
+
+  const copyBtn = document.getElementById("copilot-copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const status = document.getElementById("copilot-copy-status");
+      const brief = [
+        document.getElementById("copilot-query-title").textContent.trim(),
+        "STRATEGIC THESIS & MOAT",
+        document.getElementById("cp-thesis").textContent.trim(),
+        "KEY INDICATORS",
+        `Gross margin defense: ${document.getElementById("cp-stat-1").textContent.trim()}`,
+        `Mechanic retention: ${document.getElementById("cp-stat-2").textContent.trim()}`,
+        `Risk rating: ${document.getElementById("cp-stat-3").textContent.trim()}`,
+        "RECOMMENDED TACTICAL REALIGNMENT",
+        document.getElementById("cp-realign").textContent.trim()
+      ].join("\n\n");
+
+      try {
+        await copyTextToClipboard(brief);
+        status.textContent = "Brief copied to clipboard.";
+        status.classList.remove("copy-failed");
+        status.hidden = false;
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => { copyBtn.textContent = "Copy Brief"; }, 1600);
+      } catch (error) {
+        console.error("Could not copy the Copilot brief.", error);
+        status.textContent = "Could not access the clipboard. Select and copy the brief manually.";
+        status.classList.add("copy-failed");
+        status.hidden = false;
+      }
+    });
+  }
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      if (!document.execCommand) throw error;
+    }
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand && document.execCommand("copy");
+  textarea.remove();
+  if (!copied) throw new Error("Clipboard access is unavailable in this browser context.");
 }

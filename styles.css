@@ -647,6 +647,8 @@ footer button { justify-self: end; border: 0; background: none; color: var(--whi
 .explainable-limitations li + li { margin-top:7px; }
 .explainable-limitations > div > span { color:var(--acid); }
 .explainable-limitations h3 { color:var(--white); }
+.copilot-copy-status { margin:12px 0 0;padding:11px 14px;border-left:3px solid #477141;background:#edf4e9;color:#263c22;font-size:12px;line-height:1.5; }
+.copilot-copy-status.copy-failed { border-left-color:var(--orange);background:#fff0eb;color:#762d19; }
 
 @media(max-width:700px) {
   .performance-hero { grid-template-columns:1fr;padding-top:56px;gap:24px; }
