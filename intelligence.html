@@ -73,7 +73,7 @@
       </div>
     </section>
 
-    <!-- Navigation Tabs for the 6 ML Labs -->
+    <!-- Navigation Tabs for the ML Labs and explainability centre -->
     <nav class="ai-lab-nav" role="tablist" aria-label="Machine Learning Engines">
       <button class="ai-lab-tab active" type="button" role="tab" aria-selected="true" data-tab="clustering">
         <span>01 / UNSUPERVISED</span>
@@ -98,6 +98,10 @@
       <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="copilot">
         <span>06 / AI COPILOT</span>
         <strong>Strategy &amp; Pitch Copilot</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="explainable">
+        <span>07 / TRANSPARENCY</span>
+        <strong>Explainable AI Centre</strong>
       </button>
     </nav>
 
@@ -498,6 +502,7 @@
             </div>
 
             <button type="button" id="rec-compute-btn" class="action-btn full-width">Compute Vector Match ✦</button>
+            <p id="rec-compute-status" class="rec-compute-status" role="status" aria-live="polite" hidden></p>
           </div>
         </aside>
 
@@ -728,6 +733,62 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="ai-lab-panel explainable-panel" id="lab-explainable" role="tabpanel" aria-labelledby="lab-7-title" hidden>
+      <div class="explainable-heading">
+        <span class="engine-badge">NEW / MODEL TRANSPARENCY</span>
+        <h2 id="lab-7-title">Explainable AI Centre</h2>
+        <p>Understand why the current models recommend a particular rider segment, tyre match or campaign strategy.</p>
+      </div>
+
+      <section class="explainable-card" aria-labelledby="explanation-title">
+        <div class="explainable-card-heading">
+          <div><span>01 / MODEL EXPLANATION</span><h3 id="explanation-title">Why this result?</h3></div>
+          <span id="explainable-confidence-label" class="explainable-badge">Indicative model output</span>
+        </div>
+        <p id="explainable-summary" class="explainable-summary"></p>
+        <div id="explainable-model-details" class="explainable-detail-grid"></div>
+      </section>
+
+      <section class="explainable-card" aria-labelledby="importance-title">
+        <div class="explainable-card-heading">
+          <div><span>02 / FEATURE IMPORTANCE</span><h3 id="importance-title">What influenced the models?</h3></div>
+          <p>Relative contribution in the current example</p>
+        </div>
+        <div class="explainable-importance-grid">
+          <article>
+            <h4>Rider clustering · within-cluster distance</h4>
+            <p>Shows which measured dimensions contribute most to the current cluster separation.</p>
+            <div id="cluster-feature-importance" class="explainable-bars"></div>
+          </article>
+          <article>
+            <h4>Tyre-health classifier · model signal</h4>
+            <p>Shows each active input's share of the model's additive log-odds signal; protective inputs are marked.</p>
+            <div id="risk-feature-importance" class="explainable-bars"></div>
+          </article>
+        </div>
+        <small class="explainable-footnote">These are model-derived contributions for the current inputs, not causal effects.</small>
+      </section>
+
+      <section class="explainable-card" aria-labelledby="strategy-compare-title">
+        <div class="explainable-card-heading">
+          <div><span>03 / DECISION COMPARISON</span><h3 id="strategy-compare-title">Compare campaign strategies</h3></div>
+          <p id="strategy-current-label"></p>
+        </div>
+        <div class="strategy-comparison-grid" id="strategy-comparison-grid"></div>
+        <small class="explainable-footnote">Trade-offs are qualitative planning guidance; this comparison does not forecast outcomes.</small>
+      </section>
+
+      <section class="explainable-limitations" aria-labelledby="limitations-title">
+        <div><span>04 / CONFIDENCE &amp; LIMITATIONS</span><h3 id="limitations-title">Use as guidance, not ground truth.</h3></div>
+        <ul>
+          <li>K-Means uses synthetic rider profiles here; clusters describe similarity in the sample and do not prove real-world personas.</li>
+          <li>The tyre-health probability and remaining-life estimates use illustrative coefficients, not a validated or calibrated fleet dataset.</li>
+          <li>A cosine match is vector similarity, not a probability of fit. Confirm tyre size and fitment with the vehicle manufacturer or an authorized dealer.</li>
+          <li>Campaign advantages and risks are scenario guidance. Validate assumptions against observed costs, conversions and market evidence before allocating spend.</li>
+        </ul>
+      </section>
     </section>
 
     <!-- STARTUP UNIT ECONOMICS & VC METRICS SECTION -->

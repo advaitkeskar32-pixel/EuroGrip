@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVectorRecommender();
   initMonteCarlo();
   initCopilot();
+  initExplainableCentre();
 });
 
 /* ==========================================================================
@@ -57,7 +58,7 @@ function initLabTabs() {
   // Handle hash on load or change (e.g. #optimizer)
   const applyHash = () => {
     const hash = window.location.hash.replace("#", "");
-    if (["clustering", "optimizer", "risk", "recommender", "montecarlo", "copilot"].includes(hash)) {
+    if (["clustering", "optimizer", "risk", "recommender", "montecarlo", "copilot", "explainable"].includes(hash)) {
       activateTab(hash);
     }
   };
@@ -240,6 +241,7 @@ function stepKMeans() {
 
   drawKMeans();
   renderClusterSummary();
+  refreshExplainableCentre();
 }
 
 function runKMeansToConvergence() {
@@ -265,6 +267,7 @@ function resetKMeans() {
 
   drawKMeans();
   renderClusterSummary();
+  refreshExplainableCentre();
 }
 
 function drawKMeans() {
@@ -611,6 +614,7 @@ function updateMMMDisplay(gradNorm = 0.48) {
   document.getElementById("mmm-risk").textContent = explanations.risk;
 
   drawResponseCurves();
+  refreshExplainableCentre();
 }
 
 function drawResponseCurves() {
@@ -864,6 +868,7 @@ function initRiskClassifier() {
     document.getElementById("factor-surface-val").textContent = `+${Math.round(factorSurface * 0.3)}% Risk`;
     document.getElementById("factor-compound").style.width = `${factorCompound}%`;
     document.getElementById("factor-compound-val").textContent = brand === "eurogrip" ? "-18% Risk" : "+10% Risk";
+    refreshExplainableCentre();
   }
 
   [kmSlider, treadSlider, psiSlider, surfaceSelect, payloadSelect, brandSelect].forEach((input) => {
@@ -935,6 +940,14 @@ const BIKE_PROFILES = {
   ather: { name: "Ather 450X", vector: [8.2, 8.5, 8.0, 8.2, 9.5] }
 };
 
+const RIDING_STYLE_PROFILES = {
+  economy: [6.8, 7.8, 5.5, 6.8, 9.8],
+  daily_delivery: [7.6, 9.7, 5.5, 9.8, 9.2],
+  monsoon_safety: [9.8, 8.0, 6.8, 8.0, 7.6],
+  track_cornering: [7.8, 7.0, 9.8, 7.8, 6.5],
+  touring: [8.0, 8.8, 7.4, 8.6, 7.8]
+};
+
 function cosineSimilarity(vecA, vecB) {
   let dotProduct = 0;
   let normA = 0;
@@ -954,14 +967,16 @@ function computeVectorRecommendations() {
   const prefWet = Number(document.getElementById("pref-wet").value);
   const prefDur = Number(document.getElementById("pref-durability").value);
   const prefAgi = Number(document.getElementById("pref-agility").value);
+  const ridingStyle = document.getElementById("rec-riding-style").value;
+  const styleVector = RIDING_STYLE_PROFILES[ridingStyle] || RIDING_STYLE_PROFILES.economy;
 
-  // Blend bike vector with user preference weights
+  // Blend motorcycle fit, explicit preferences, and the selected riding style.
   const queryVector = [
-    (bike.vector[0] * 0.5) + (prefWet * 0.5),
-    (bike.vector[1] * 0.5) + (prefDur * 0.5),
-    (bike.vector[2] * 0.5) + (prefAgi * 0.5),
-    bike.vector[3],
-    bike.vector[4]
+    (bike.vector[0] * 0.4) + (prefWet * 0.3) + (styleVector[0] * 0.3),
+    (bike.vector[1] * 0.4) + (prefDur * 0.3) + (styleVector[1] * 0.3),
+    (bike.vector[2] * 0.4) + (prefAgi * 0.3) + (styleVector[2] * 0.3),
+    (bike.vector[3] * 0.65) + (styleVector[3] * 0.35),
+    (bike.vector[4] * 0.65) + (styleVector[4] * 0.35)
   ];
 
   // Score all tyres
@@ -1014,15 +1029,200 @@ function computeVectorRecommendations() {
       </div>
     `;
   }).join("");
+  refreshExplainableCentre();
+  return top;
 }
 
 function initVectorRecommender() {
-  document.getElementById("rec-compute-btn").addEventListener("click", computeVectorRecommendations);
+  document.getElementById("rec-compute-btn").addEventListener("click", () => {
+    const top = computeVectorRecommendations();
+    const bikeKey = document.getElementById("rec-bike-model").value;
+    const bike = BIKE_PROFILES[bikeKey] || BIKE_PROFILES.splendor;
+    const ridingStyle = document.getElementById("rec-riding-style").selectedOptions[0].textContent;
+    const status = document.getElementById("rec-compute-status");
+    status.textContent = `Best match for ${bike.name}: ${top.name} (${(top.score * 100).toFixed(1)}%). See the comparison on the right.`;
+    status.hidden = false;
+  });
   ["rec-bike-model", "rec-riding-style", "pref-wet", "pref-durability", "pref-agility"].forEach((id) => {
     document.getElementById(id).addEventListener("change", computeVectorRecommendations);
     document.getElementById(id).addEventListener("input", computeVectorRecommendations);
   });
   computeVectorRecommendations();
+}
+
+const EXPLAINABLE_STRATEGIES = [
+  {
+    id: "blended",
+    name: "Balanced",
+    benefit: "Diversifies investment across rider segments and shared-brand activity.",
+    tradeoff: "May underweight the best-performing channel in the short term."
+  },
+  {
+    id: "gig",
+    name: "Gig-worker led",
+    benefit: "Focuses on high-mileage riders, uptime and Rider Card acquisition.",
+    tradeoff: "Can reduce commuter retail coverage and premium brand exposure."
+  },
+  {
+    id: "retail",
+    name: "Retail footprint",
+    benefit: "Prioritizes dealer participation and Tyre Finder availability.",
+    tradeoff: "Store activation takes time and requires reliable dealer execution."
+  },
+  {
+    id: "premium",
+    name: "Premium proof",
+    benefit: "Invests in club demos, creators and track evidence for premium riders.",
+    tradeoff: "Reach can be narrower and cost per engaged rider can be higher."
+  }
+];
+
+function initExplainableCentre() {
+  refreshExplainableCentre();
+}
+
+function refreshExplainableCentre() {
+  if (!document.getElementById("explainable-summary")) return;
+
+  const bikeKey = document.getElementById("rec-bike-model").value;
+  const bike = BIKE_PROFILES[bikeKey] || BIKE_PROFILES.splendor;
+  const ridingStyle = document.getElementById("rec-riding-style").selectedOptions[0].textContent;
+  const topTyre = document.getElementById("rec-top-title").textContent;
+  const matchScore = document.getElementById("rec-top-score").textContent;
+  const riskPercent = document.getElementById("risk-prob-val").textContent;
+  const riskLevel = document.getElementById("risk-level-badge").textContent.toLowerCase();
+  const kmeansStatus = document.getElementById("kmeans-status").textContent;
+  const objectiveSelect = document.getElementById("opt-objective");
+  const objective = EXPLAINABLE_STRATEGIES.find((strategy) => strategy.id === mmmState.objective) || EXPLAINABLE_STRATEGIES[0];
+  const budgetSplit = CHANNELS_MMM.map((channel, index) =>
+    `${channel.name} ${Math.round(mmmState.spends[index] / mmmState.totalBudget * 100)}%`
+  ).join(" · ");
+
+  document.getElementById("explainable-confidence-label").textContent =
+    "Illustrative outputs · not calibrated confidence";
+  document.getElementById("explainable-summary").textContent =
+    `For the ${bike.name} and the selected riding priorities, cosine similarity ranks ${topTyre} highest (${matchScore}). The tyre-health model estimates ${riskPercent} (${riskLevel}) for the current usage and condition inputs. The budget model is optimizing for “${objectiveSelect.options[objectiveSelect.selectedIndex].text}”.`;
+
+  const details = document.getElementById("explainable-model-details");
+  details.replaceChildren();
+  [
+    ["Tyre recommendation", `${topTyre} · ${matchScore} cosine similarity for ${bike.name} and ${ridingStyle.toLowerCase()}. This is a relative vector match, not a confirmed fitment.`],
+    ["Tyre-health estimate", `${riskPercent} model-estimated risk (${riskLevel}); ${document.getElementById("risk-rul-km").textContent.trim()} estimated remaining life.`],
+    ["Rider clusters", `${kmeansState.n} synthetic profiles · K=${kmeansState.k} · ${kmeansStatus}. The groups are based on daily kilometres and performance-affinity scores.`],
+    ["Current channel mix", `₹${mmmState.totalBudget.toFixed(1)} Cr · ${budgetSplit}. Objective: ${objective.name.toLowerCase()}.`]
+  ].forEach(([title, text]) => {
+    const item = document.createElement("article");
+    const heading = document.createElement("h4");
+    heading.textContent = title;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = text;
+    item.append(heading, paragraph);
+    details.append(item);
+  });
+
+  renderExplainableBars(
+    document.getElementById("cluster-feature-importance"),
+    calculateClusterFeatureImportance()
+  );
+  renderExplainableBars(
+    document.getElementById("risk-feature-importance"),
+    calculateRiskFeatureImportance()
+  );
+  document.getElementById("strategy-current-label").textContent =
+    `Current objective: ${objective.name} · ₹${mmmState.totalBudget.toFixed(1)} Cr`;
+  renderStrategyComparison();
+}
+
+function calculateClusterFeatureImportance() {
+  const kmVariance = { label: "Daily distance", value: 0 };
+  const performanceVariance = { label: "Performance affinity", value: 0 };
+  const { data, assignments, centroids } = kmeansState;
+  data.forEach((point, index) => {
+    const centroid = centroids[assignments[index]] || centroids[0];
+    if (!centroid) return;
+    kmVariance.value += ((point.km - centroid.km) / 180) ** 2;
+    performanceVariance.value += ((point.perf - centroid.perf) / 10) ** 2;
+  });
+  const sum = kmVariance.value + performanceVariance.value;
+  if (!sum) {
+    kmVariance.value = 50;
+    performanceVariance.value = 50;
+  } else {
+    kmVariance.value = kmVariance.value / sum * 100;
+    performanceVariance.value = performanceVariance.value / sum * 100;
+  }
+  return [kmVariance, performanceVariance];
+}
+
+function calculateRiskFeatureImportance() {
+  const km = Number(document.getElementById("risk-km-slider").value);
+  const tread = Number(document.getElementById("risk-tread-slider").value);
+  const psi = Number(document.getElementById("risk-psi-slider").value);
+  const surface = document.getElementById("risk-surface").value;
+  const payload = document.getElementById("risk-payload").value;
+  const brand = document.getElementById("risk-tyre-brand").value;
+  const contributions = [
+    { label: "Daily distance", value: km / 100 * 0.95 },
+    { label: "Tread depletion", value: 1.6 / Math.max(0.6, tread) * 1.35 },
+    { label: "Pressure deviation", value: Math.abs(psi) * 0.18 },
+    { label: "Road surface", value: ({ city: -0.4, rough: 0.65, monsoon: 0.85, unpaved: 1.1 })[surface] || 0 },
+    { label: "Payload", value: ({ solo: -0.3, delivery: 0.45, pillion: 0.8 })[payload] || 0 },
+    { label: "Tyre brand", value: ({ generic: 0.95, eurogrip: -0.85, competitor: 0.1 })[brand] || 0 }
+  ];
+  const total = contributions.reduce((sum, item) => sum + Math.abs(item.value), 0);
+  return contributions.map((item) => ({
+    label: `${item.label}${item.value < 0 ? " · protective" : ""}`,
+    value: total ? Math.abs(item.value) / total * 100 : 0,
+    detail: `${item.value > 0 ? "+" : ""}${item.value.toFixed(2)} log-odds`
+  }));
+}
+
+function renderExplainableBars(container, features) {
+  container.replaceChildren();
+  features.forEach((feature) => {
+    const row = document.createElement("div");
+    row.className = "explainable-bar-row";
+    const header = document.createElement("div");
+    header.className = "explainable-bar-label";
+    const label = document.createElement("span");
+    label.textContent = feature.label;
+    const value = document.createElement("strong");
+    value.textContent = feature.detail || `${feature.value.toFixed(1)}%`;
+    header.append(label, value);
+    const track = document.createElement("div");
+    track.className = "explainable-bar-track";
+    track.setAttribute("role", "img");
+    track.setAttribute("aria-label", `${feature.label}: ${feature.value.toFixed(1)} percent relative contribution`);
+    const fill = document.createElement("i");
+    fill.style.width = `${Math.max(0, Math.min(100, feature.value))}%`;
+    track.append(fill);
+    row.append(header, track);
+    container.append(row);
+  });
+}
+
+function renderStrategyComparison() {
+  const container = document.getElementById("strategy-comparison-grid");
+  container.replaceChildren();
+  EXPLAINABLE_STRATEGIES.forEach((strategy) => {
+    const card = document.createElement("article");
+    card.className = `strategy-comparison-card${strategy.id === mmmState.objective ? " is-current" : ""}`;
+    if (strategy.id === mmmState.objective) card.setAttribute("aria-current", "true");
+    const title = document.createElement("h4");
+    title.textContent = strategy.name;
+    const badge = document.createElement("span");
+    badge.textContent = strategy.id === mmmState.objective ? "CURRENT" : "ALTERNATIVE";
+    const advantageLabel = document.createElement("small");
+    advantageLabel.textContent = "ADVANTAGE";
+    const advantage = document.createElement("p");
+    advantage.textContent = strategy.benefit;
+    const tradeoffLabel = document.createElement("small");
+    tradeoffLabel.textContent = "TRADE-OFF";
+    const tradeoff = document.createElement("p");
+    tradeoff.textContent = strategy.tradeoff;
+    card.append(title, badge, advantageLabel, advantage, tradeoffLabel, tradeoff);
+    container.append(card);
+  });
 }
 
 /* ==========================================================================
