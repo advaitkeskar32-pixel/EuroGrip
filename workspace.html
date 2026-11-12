@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Campaign Workspace — Eurogrip</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><script src="common-nav.js" defer></script><script src="cmd-palette.js" defer></script><script src="workspace.js" defer></script></head>
+<body><header class="nav page-nav"><a class="brand" href="index.html"><span class="brand-mark"><span></span></span><span>EUROGRIP</span></a><nav><a href="challenge.html">Challenge</a><a href="segments.html">Segments</a><a href="budget.html">Budget</a><a href="roadmap.html">Roadmap</a><a class="active" href="workspace.html">Workspace</a><a href="intelligence.html">AI Lab</a></nav><button class="palette-trigger" type="button" aria-label="Command Palette"><kbd>⌘K</kbd> <span>Actions</span></button></header>
+<main><section class="workspace-route">
+  <div class="workspace-route-head">
+    <div><p>05 / CAMPAIGN WORKSPACE</p><h1>Build your<br><em>campaign model.</em></h1></div>
+    <div class="workspace-header-actions">
+      <input id="project-name" class="project-name" value="Eurogrip Growth Plan" aria-label="Project name">
+      <button id="share-workspace" type="button">Share</button>
+      <button id="save-scenario" type="button">Save scenario</button>
+      <button id="reset-workspace" type="button">Reset</button>
+      <button id="export-workspace" type="button">Export plan ↗</button>
+    </div>
+  </div>
+  <div class="workspace-preset-bar" role="group" aria-label="Strategy presets">
+    <span>QUICK START</span>
+    <button type="button" class="active" data-preset="base">Source strategy</button>
+    <button type="button" data-preset="reach">Reach expansion</button>
+    <button type="button" data-preset="performance">Premium performance</button>
+    <button type="button" data-preset="ai-opt" class="ai-opt-btn">AI Optimal (MMM) ✦</button>
+    <a href="intelligence.html" class="ai-lab-link-pill">Deep ML Lab ↗</a>
+    <span id="draft-status" role="status" aria-live="polite">Saved locally</span>
+  </div>
+  <div class="scenario-history" id="scenario-history" aria-label="Saved scenarios"></div>
+  <div class="workspace-route-grid">
+    <aside>
+      <div class="input-heading"><span>PLAN INPUTS</span><small>All fields update the model</small></div>
+      <label>Annual budget (₹ crore)<input id="workspace-budget" type="number" value="60" min="10" max="200"></label>
+      <label>Tyre Finder shops<input id="workspace-shops" type="number" value="5000" min="100" max="100000"></label>
+      <label>Rider Cards<input id="workspace-cards" type="number" value="50000" min="1000" max="1000000"></label>
+      <label>Club trials<input id="workspace-trials" type="number" value="100" min="10" max="10000"></label>
+      <label>Launch duration<select id="workspace-months"><option value="12">12 months</option><option value="9">9 months</option><option value="6">6 months</option><option value="3">3 months</option></select></label>
+      <label>Priority segment<select id="workspace-segment"><option>Commuter</option><option>Gig worker</option><option>Premium rider</option></select></label>
+      <div class="constraint-wrap"><span>QUICK CONSTRAINTS</span><div><button type="button" data-constraint="Concentrate spend on South India">South India</button><button type="button" data-constraint="Protect the retail channel">Protect retail</button><button type="button" data-constraint="Delay premium launches until after pilot validation">Delay premium</button></div></div>
+      <label>Constraint or prompt<textarea id="workspace-prompt" rows="3" maxlength="240" placeholder="Example: Concentrate spend on South India and delay premium launches."></textarea></label>
+    </aside>
+    <div class="workspace-results">
+      <span>LIVE RECOMMENDATION</span>
+      <div class="workspace-score"><strong id="workspace-score">92</strong><small>/100</small><p>PLAN FIT</p></div>
+      <h2 id="workspace-headline">Commuter-led launch model</h2>
+      <p id="workspace-summary">With a ₹60 crore budget, target 5,000 tyre-finder shops, 50,000 Rider Cards and 100 club trials.</p>
+      <div class="workspace-actions-list"><article><small>01 / ACTION</small><strong id="workspace-action">Lead with the WhatsApp Tyre Finder, mechanic rewards and local check camps.</strong></article><article><small>02 / CHANNEL</small><strong id="workspace-channel">40% digital / 30% retail / 30% on-ground</strong></article><article><small>03 / KPI</small><strong id="workspace-kpi">Track activation monthly, then reallocate if shop, card and trial conversion misses the phase target.</strong></article></div>
+      <div class="forecast" aria-label="12 month forecast"><div><span>MONTHLY REACH FORECAST</span><strong id="forecast-value">5,000</strong></div><div class="forecast-bars" id="forecast-bars"></div></div>
+      <div class="generated-plan" id="generated-plan" hidden>
+        <div><span>GENERATED ACTION PLAN</span><strong id="generated-at">Ready to review</strong></div>
+        <ol id="generated-steps"></ol>
+      </div>
+      <button id="generate-workspace" type="button"><span>Generate updated plan</span><b>→</b></button>
+    </div>
+  </div>
+</section></main></body></html>

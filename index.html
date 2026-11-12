@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#d9ff43" />
+  <title>Eurogrip — One Brand. Three Roads.</title>
+  <meta name="description" content="Eurogrip's interactive rider strategy, budget and campaign workspace." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="home-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="Eurogrip strategy home">
+      <span class="brand-mark"><span></span></span>
+      <span>EUROGRIP</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="challenge.html">Challenge</a>
+      <a href="segments.html">Segments</a>
+      <a href="budget.html">Budget</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="workspace.html">Workspace</a>
+      <a href="intelligence.html">AI Lab</a>
+    </nav>
+    <button class="source-button" type="button" data-open-sources>Source notes <span>↗</span></button>
+    <button class="menu-button" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>STRATEGY OVERVIEW / 2026</span></p>
+        <h1 id="hero-title">One brand.<br><em>Three roads.</em></h1>
+        <p class="hero-lede">A focused ₹60 crore plan for commuters, gig riders and premium riders.</p>
+        <a class="primary-button" href="challenge.html">Explore the strategy <span>→</span></a>
+      </div>
+      <div class="hero-visual" aria-label="Three rider strategy illustration">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="tyre">
+          <div class="tyre-side"><div class="hub"></div></div>
+          <div class="tread"></div>
+        </div>
+        <div class="promise-card">
+          <span>THE PROMISE</span>
+          <strong>Grip you<br>can trust</strong>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div><strong>₹60<span>CR</span></strong><small>Annual investment</small></div>
+        <div><strong>03</strong><small>Rider segments</small></div>
+        <div><strong>12<span>MO</span></strong><small>Execution roadmap</small></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Campaign themes">
+      <div>
+        <span>MADE FOR YOUR BIKE</span><b>✦</b>
+        <span>NEVER LOSE A SHIFT</span><b>✦</b>
+        <span>PROVEN ON THE TRACK</span><b>✦</b>
+        <span>MADE FOR YOUR BIKE</span><b>✦</b>
+        <span>NEVER LOSE A SHIFT</span><b>✦</b>
+        <span>PROVEN ON THE TRACK</span><b>✦</b>
+      </div>
+    </div>
+
+    <section class="customer-hub" aria-labelledby="customer-hub-title">
+      <div class="customer-hub-head">
+        <div>
+          <p class="section-number">CHOOSE YOUR TOOL</p>
+          <h2 id="customer-hub-title">Useful for every rider journey.</h2>
+        </div>
+        <p>Planning, activation and tyre guidance in one place.</p>
+      </div>
+      <div class="customer-hub-grid">
+        <a href="workspace.html">
+          <span>01 / MARKETING TEAMS</span>
+          <strong>Plan a campaign</strong>
+          <p>Set targets, test budgets, save scenarios and export an activation brief.</p>
+          <b>Open planner →</b>
+        </a>
+        <a href="segments.html">
+          <span>02 / RIDERS</span>
+          <strong>Find your rider fit</strong>
+          <p>Match your riding style to the right Eurogrip strategy and next step.</p>
+          <b>Explore segments →</b>
+        </a>
+        <a href="roadmap.html">
+          <span>03 / DEALERS</span>
+          <strong>Prepare a launch</strong>
+          <p>Track pilot, rollout and review actions for a complete dealer activation.</p>
+          <b>View roadmap →</b>
+        </a>
+        <a href="intelligence.html" class="hub-ai-card">
+          <span>04 / DATA &amp; AI LAB</span>
+          <strong>Predictive ML suite</strong>
+          <p>Run K-Means rider clustering, gradient descent MMM budget optimizer and fleet failure models.</p>
+          <b>Launch AI Lab →</b>
+        </a>
+      </div>
+    </section>
+
+    <section class="connected-tools" id="connected-tools" aria-labelledby="connected-tools-title">
+      <div class="connected-tools-head">
+        <div><p class="section-number">CONNECTED RIDER TOOLKIT</p><h2 id="connected-tools-title">Five moves.<br><em>One connected plan.</em></h2></div>
+        <p>Every quick tool feeds the same strategy across segments, investment, execution and AI.</p>
+      </div>
+      <div class="connected-tools-grid">
+        <article class="connected-tool">
+          <span>01 / RIDER DNA</span>
+          <h3>Find your ride profile</h3>
+          <p>Choose the rider you want to reach, then carry that focus into segment strategy.</p>
+          <label>Priority rider
+            <select id="tool-rider-segment"><option value="Commuter">Commuter</option><option value="Gig worker">Gig worker</option><option value="Premium rider">Premium rider</option></select>
+          </label>
+          <button type="button" id="tool-save-rider">Save profile <span>→</span></button>
+          <small class="tool-status" id="tool-rider-status" aria-live="polite"></small>
+        </article>
+        <article class="connected-tool">
+          <span>02 / BUDGET PULSE</span>
+          <h3>Stress-test your spend</h3>
+          <p>Adjust annual investment and see the updated budget flow through your plan.</p>
+          <label>Annual budget <strong id="tool-budget-value">₹60 Cr</strong>
+            <input id="tool-budget" type="range" min="30" max="120" step="5" value="60">
+          </label>
+          <button type="button" id="tool-apply-budget">Apply to budget <span>→</span></button>
+          <small class="tool-status" id="tool-budget-status" aria-live="polite"></small>
+        </article>
+        <article class="connected-tool">
+          <span>03 / TYRE HEALTH</span>
+          <h3>Preview wear risk</h3>
+          <p>Send your ride profile to the AI Lab’s fleet wear and remaining-life model.</p>
+          <div class="tool-input-row">
+            <label>Km / day<input id="tool-km" type="number" min="15" max="220" value="85"></label>
+            <label>Tread / mm<input id="tool-tread" type="number" min="0.8" max="7" step="0.2" value="2.8"></label>
+            <label>PSI offset<input id="tool-psi" type="number" min="-12" max="8" value="-6"></label>
+          </div>
+          <button type="button" id="tool-run-health">Run health check <span>→</span></button>
+          <small class="tool-status" id="tool-health-status" aria-live="polite"></small>
+        </article>
+        <article class="connected-tool">
+          <span>04 / DEALER READINESS</span>
+          <h3>Pick up the launch</h3>
+          <p>Continue the checklist and keep dealer progress connected to overall plan fit.</p>
+          <div class="tool-progress"><i id="tool-dealer-progress"></i></div>
+          <strong class="tool-progress-label" id="tool-dealer-label">Loading launch readiness…</strong>
+          <a href="roadmap.html">Continue launch checklist <span>→</span></a>
+        </article>
+        <article class="connected-tool">
+          <span>05 / CAMPAIGN COPILOT</span>
+          <h3>Start with a prompt</h3>
+          <p>Seed a campaign workspace with a segment and constraint you want to solve.</p>
+          <label>What should the plan focus on?
+            <input id="tool-campaign-prompt" type="text" maxlength="160" placeholder="e.g. Grow rider uptime in the South">
+          </label>
+          <button type="button" id="tool-open-campaign">Build my campaign <span>→</span></button>
+          <small class="tool-status" id="tool-campaign-status" aria-live="polite"></small>
+        </article>
+      </div>
+    </section>
+
+    <section class="challenge section" id="challenge">
+      <div class="section-number">01 / THE CHALLENGE</div>
+      <div class="challenge-grid">
+        <div>
+          <p class="kicker">THE QUESTION</p>
+          <h2>One brand.<br><span>Many definitions of trust.</span></h2>
+        </div>
+        <div class="challenge-copy">
+          <p class="lead">Eurogrip is well known—but every rider measures it differently.</p>
+          <p>A commuter needs the right fit. A gig worker cannot afford downtime. A premium rider wants proof. The answer is not three brands. It is one promise expressed through three truths.</p>
+        </div>
+      </div>
+      <div class="truth-row" role="list">
+        <article role="listitem">
+          <span class="truth-index">01</span>
+          <div class="truth-icon commuter-icon"><i></i></div>
+          <h3>Commuter</h3>
+          <p>Dependability and wide range</p>
+        </article>
+        <article role="listitem">
+          <span class="truth-index">02</span>
+          <div class="truth-icon gig-icon"><i></i></div>
+          <h3>Gig worker</h3>
+          <p>Durability and zero downtime</p>
+        </article>
+        <article role="listitem">
+          <span class="truth-index">03</span>
+          <div class="truth-icon premium-icon"><i></i></div>
+          <h3>Premium rider</h3>
+          <p>Performance and peer proof</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="strategy section dark-section" id="strategy">
+      <div class="section-heading">
+        <div class="section-number">02 / THE STRATEGY</div>
+        <p>Different need. Same trust.</p>
+      </div>
+      <div class="segment-tabs" role="tablist" aria-label="Rider segments">
+        <button class="segment-tab active" type="button" role="tab" aria-selected="true" data-segment="commuter"><span>01</span> Commuter</button>
+        <button class="segment-tab" type="button" role="tab" aria-selected="false" data-segment="gig"><span>02</span> Gig worker</button>
+        <button class="segment-tab" type="button" role="tab" aria-selected="false" data-segment="premium"><span>03</span> Premium</button>
+      </div>
+      <div class="segment-stage">
+        <div class="segment-copy" aria-live="polite">
+          <p class="segment-label" id="segment-role">DEFEND / RELIABILITY</p>
+          <h2 id="segment-promise">Made for<br>your bike.</h2>
+          <p class="segment-description" id="segment-description">The right tyre is more than a product. It is confidence that fits, functions and lasts for the ride ahead.</p>
+          <div class="segment-budget"><span>SEGMENT BUDGET</span><strong id="segment-budget">₹15 CR</strong></div>
+        </div>
+        <div class="segment-visual" id="segment-visual">
+          <div class="visual-ring ring-one"></div>
+          <div class="visual-ring ring-two"></div>
+          <div class="visual-product"><div></div><span></span></div>
+          <p class="visual-word" id="segment-word">RANGE</p>
+        </div>
+      </div>
+      <div class="activation-panel">
+        <p>ACTIVATION SYSTEM</p>
+        <div class="activation-list" id="activation-list">
+          <article><span>01</span><div><small>DIGITAL</small><strong>Tyre finder on WhatsApp</strong></div></article>
+          <article><span>02</span><div><small>RETAIL</small><strong>Finder in every shop + mechanic rewards</strong></div></article>
+          <article><span>03</span><div><small>ON-GROUND</small><strong>Free tyre check camps</strong></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="investment section" id="investment">
+      <div class="section-number">03 / THE INVESTMENT</div>
+      <div class="investment-head">
+        <h2>₹60 crore.<br><span>One focused year.</span></h2>
+        <p>The plan allocates 85% to rider segments and 15% to shared brand work, then balances reach across three core channels.</p>
+      </div>
+      <div class="budget-grid">
+        <div class="budget-chart">
+          <div class="chart-head"><span>SEGMENT ALLOCATION</span><strong>₹51 CR</strong></div>
+          <div class="bar-row"><span>Commuter</span><div><i style="width:29%"></i></div><strong>₹15 CR</strong></div>
+          <div class="bar-row gig-bar"><span>Gig worker</span><div><i style="width:35%"></i></div><strong>₹18 CR</strong></div>
+          <div class="bar-row premium-bar"><span>Premium</span><div><i style="width:35%"></i></div><strong>₹18 CR</strong></div>
+          <div class="bar-row shared-bar"><span>Shared brand</span><div><i style="width:17%"></i></div><strong>₹9 CR</strong></div>
+        </div>
+        <div class="channel-card">
+          <div class="chart-head"><span>CHANNEL MIX</span><strong>100%</strong></div>
+          <div class="donut-wrap">
+            <div class="donut"><div><strong>40</strong><span>% DIGITAL</span></div></div>
+            <div class="channel-legend">
+              <p><i class="digital"></i><span>Digital</span><strong>40%</strong></p>
+              <p><i class="retail"></i><span>Retail</span><strong>30%</strong></p>
+              <p><i class="ground"></i><span>On-ground</span><strong>30%</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="assumption"><span>ASSUMPTION</span> The ₹60 crore investment is approximately 1.8% of TVS Srichakra’s FY26 company-wide revenue, as presented in the source case study.</p>
+    </section>
+
+    <section class="roadmap section" id="roadmap">
+      <div class="section-number light">04 / THE ROADMAP</div>
+      <div class="roadmap-head">
+        <h2>12 months.<br><span>Three moves.</span></h2>
+        <p>A deliberate sequence: prove locally, scale selectively, then let evidence drive the final allocation.</p>
+      </div>
+      <div class="timeline">
+        <article>
+          <div class="phase-top"><span>PHASE 01</span><strong>0—3</strong></div>
+          <h3>Prove</h3>
+          <p>Pilot in Chennai and Bengaluru</p>
+          <div class="city-pills"><span>CHENNAI</span><span>BENGALURU</span></div>
+        </article>
+        <article>
+          <div class="phase-top"><span>PHASE 02</span><strong>4—9</strong></div>
+          <h3>Scale</h3>
+          <p>Expand the winning playbook to 10 cities</p>
+          <div class="city-count">10 <span>CITIES</span></div>
+        </article>
+        <article>
+          <div class="phase-top"><span>PHASE 03</span><strong>10—12</strong></div>
+          <h3>Reallocate</h3>
+          <p>Review performance and shift spend</p>
+          <div class="data-mark"><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="targets section" id="targets">
+      <div class="targets-head">
+        <div>
+          <p class="section-number">05 / YEAR-ONE TARGETS</p>
+          <h2>What success<br><span>looks like.</span></h2>
+        </div>
+        <span class="proposed">PROPOSED / NOT CONFIRMED</span>
+      </div>
+      <div class="target-grid">
+        <article><small>01</small><strong>5,000</strong><p>shops with<br>Tyre Finder</p><span class="target-line"></span></article>
+        <article><small>02</small><strong>50K</strong><p>Rider Cards<br>issued</p><span class="target-line"></span></article>
+        <article><small>03</small><strong>100</strong><p>club trials<br>conducted</p><span class="target-line"></span></article>
+        <article><small>04</small><strong>↗</strong><p>Premium<br>consideration</p><span class="target-line"></span></article>
+      </div>
+    </section>
+
+    <section class="control-room section" id="control-room">
+      <div class="control-heading">
+        <div>
+          <p class="section-number">06 / CAMPAIGN CONTROL ROOM</p>
+          <h2>Plan. Simulate.<br><span>Activate.</span></h2>
+        </div>
+        <div class="control-actions">
+          <button type="button" id="share-plan">Share workspace</button>
+          <button type="button" id="save-plan">Save plan</button>
+          <button type="button" id="reset-plan">Reset</button>
+          <button class="export-button" type="button" id="export-plan">Export brief <span>↗</span></button>
+        </div>
+      </div>
+
+      <div class="control-grid">
+        <aside class="planner-panel">
+          <div class="panel-title">
+            <span>STRATEGY PLANNER</span>
+            <small>Editable proposal</small>
+          </div>
+          <label class="budget-total">
+            <span>Annual budget</span>
+            <strong><input id="total-budget" type="number" min="10" max="200" value="60" aria-label="Annual budget in crore rupees"> CR</strong>
+          </label>
+          <div class="range-stack">
+            <label>
+              <span>Commuter</span><output id="commuter-output">15%</output>
+              <input class="allocation-range" id="commuter-range" type="range" min="0" max="100" value="25" data-key="commuter">
+            </label>
+            <label>
+              <span>Gig worker</span><output id="gig-output">30%</output>
+              <input class="allocation-range gig-range" id="gig-range" type="range" min="0" max="100" value="30" data-key="gig">
+            </label>
+            <label>
+              <span>Premium</span><output id="premium-output">30%</output>
+              <input class="allocation-range premium-range" id="premium-range" type="range" min="0" max="100" value="30" data-key="premium">
+            </label>
+            <label>
+              <span>Shared brand</span><output id="shared-output">15%</output>
+              <input class="allocation-range shared-range" id="shared-range" type="range" min="0" max="100" value="15" data-key="shared">
+            </label>
+          </div>
+          <div class="allocation-status" id="allocation-status"><span>100%</span> allocated</div>
+        </aside>
+
+        <div class="simulator-panel">
+          <div class="panel-title">
+            <span>PERFORMANCE SIMULATOR</span>
+            <div class="scenario-switch" role="group" aria-label="Scenario">
+              <button type="button" class="active" data-scenario="balanced">Balanced</button>
+              <button type="button" data-scenario="retail">Retail</button>
+              <button type="button" data-scenario="digital">Digital</button>
+            </div>
+          </div>
+          <div class="city-filter">
+            <label>MARKET
+              <select id="city-select">
+                <option value="pilot">Pilot markets</option>
+                <option value="scale">Scale markets</option>
+                <option value="national">National mix</option>
+              </select>
+            </label>
+            <span id="scenario-label">Balanced channel mix</span>
+          </div>
+          <div class="kpi-grid">
+            <article>
+              <small>SHOP NETWORK</small>
+              <strong id="kpi-shops">5,000</strong>
+              <div class="spark-bars shops-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <p><span id="shops-change">0%</span> vs target</p>
+            </article>
+            <article>
+              <small>RIDER CARDS</small>
+              <strong id="kpi-cards">50K</strong>
+              <div class="spark-bars cards-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <p><span id="cards-change">0%</span> vs target</p>
+            </article>
+            <article>
+              <small>CLUB TRIALS</small>
+              <strong id="kpi-trials">100</strong>
+              <div class="spark-bars trials-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <p><span id="trials-change">0%</span> vs target</p>
+            </article>
+          </div>
+          <div class="channel-split">
+            <div><span>Digital <strong id="digital-value">40%</strong></span><i><b id="digital-bar"></b></i></div>
+            <div><span>Retail <strong id="retail-value">30%</strong></span><i><b id="retail-bar"></b></i></div>
+            <div><span>On-ground <strong id="ground-value">30%</strong></span><i><b id="ground-bar"></b></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-panel">
+        <div class="prompt-inputs">
+          <div class="panel-title">
+            <span>YOUR CAMPAIGN INPUTS</span>
+            <small>Values update the recommendation</small>
+          </div>
+          <div class="custom-fields">
+            <label>Target tyre shops
+              <input id="custom-shops" type="number" min="100" max="100000" value="5000">
+            </label>
+            <label>Rider Cards
+              <input id="custom-cards" type="number" min="1000" max="1000000" value="50000">
+            </label>
+            <label>Club trials
+              <input id="custom-trials" type="number" min="10" max="10000" value="100">
+            </label>
+            <label>Launch period
+              <select id="custom-months">
+                <option value="12">12 months</option>
+                <option value="9">9 months</option>
+                <option value="6">6 months</option>
+                <option value="3">3 months</option>
+              </select>
+            </label>
+            <label>Primary goal
+              <select id="custom-goal">
+                <option value="uptime">Improve rider uptime</option>
+                <option value="reach">Expand shop reach</option>
+                <option value="performance">Build premium performance</option>
+                <option value="balanced">Balanced growth</option>
+              </select>
+            </label>
+            <label>Priority segment
+              <select id="custom-segment">
+                <option value="commuter">Commuter</option>
+                <option value="gig">Gig worker</option>
+                <option value="premium">Premium rider</option>
+              </select>
+            </label>
+          </div>
+          <label class="custom-prompt">
+            Ask or add a constraint
+            <textarea id="custom-prompt" rows="4" placeholder="Example: Focus 60% of spend on South India and reduce premium-track activity until after launch."></textarea>
+          </label>
+          <button class="generate-button" type="button" id="generate-recommendation">Generate recommendation <span>→</span></button>
+        </div>
+        <div class="prompt-results">
+          <div class="panel-title">
+            <span>TAILORED RESULT</span>
+            <small id="result-status">Ready</small>
+          </div>
+          <div class="result-empty" id="result-empty">
+            <span>01</span>
+            <h3>Enter your inputs<br>to create a plan.</h3>
+            <p>Results are calculated locally from your values and constraints.</p>
+          </div>
+          <div class="result-content" id="result-content" aria-live="polite" hidden>
+            <div class="result-score">
+              <span>PLAN FIT</span>
+              <strong id="result-score">86</strong>
+              <small>/100</small>
+            </div>
+            <h3 id="result-headline"></h3>
+            <p id="result-summary"></p>
+            <div class="recommendation-list">
+              <article><span>01</span><div><small>RECOMMENDED ACTION</small><strong id="result-action"></strong></div></article>
+              <article><span>02</span><div><small>CHANNEL SHIFT</small><strong id="result-channel"></strong></div></article>
+              <article><span>03</span><div><small>SUCCESS SIGNAL</small><strong id="result-kpi"></strong></div></article>
+            </div>
+            <button class="copy-result-button" type="button" id="copy-result">Copy recommendation</button>
+          </div>
+        </div>
+
+        <div class="workspace-panel">
+          <div class="workspace-head">
+            <div>
+              <span>EXECUTION WORKSPACE</span>
+              <strong id="workspace-name">Eurogrip Growth Plan</strong>
+            </div>
+            <div class="readiness-ring" id="readiness-ring"><strong>72</strong><span>READY</span></div>
+          </div>
+          <div class="workspace-grid">
+            <section class="compare-panel">
+              <div class="workspace-title">
+                <span>SCENARIO COMPARISON</span>
+                <button type="button" id="add-comparison">+ Add scenario</button>
+              </div>
+              <div class="comparison-table" id="comparison-table" aria-live="polite">
+                <div class="comparison-row comparison-head"><span>Metric</span><span>Base</span><span>Digital</span><span>Retail</span></div>
+                <div class="comparison-row"><span>Reach potential</span><strong>5,000</strong><strong>6,100</strong><strong>5,750</strong></div>
+                <div class="comparison-row"><span>Rider uptake</span><strong>50K</strong><strong>58K</strong><strong>62K</strong></div>
+                <div class="comparison-row"><span>Trial capacity</span><strong>100</strong><strong>112</strong><strong>126</strong></div>
+                <div class="comparison-row"><span>Execution risk</span><strong>Medium</strong><strong>Medium</strong><strong>Low</strong></div>
+              </div>
+            </section>
+            <section class="readiness-panel">
+              <div class="workspace-title"><span>LAUNCH READINESS</span><small>12-week check</small></div>
+              <div class="checklist" id="launch-checklist">
+                <label><input type="checkbox" checked><span><strong>Brand promise approved</strong><small>One brand / three segment expressions</small></span><i>Done</i></label>
+                <label><input type="checkbox" checked><span><strong>Budget model built</strong><small>Allocation and channel assumptions</small></span><i>Done</i></label>
+                <label><input type="checkbox"><span><strong>Partner workshop shortlist</strong><small>Retail and fixed-price network</small></span><i>Open</i></label>
+                <label><input type="checkbox"><span><strong>Pilot measurement plan</strong><small>Chennai and Bengaluru baseline</small></span><i>Open</i></label>
+                <label><input type="checkbox"><span><strong>Creator and club roster</strong><small>Premium trial and track-day partners</small></span><i>Open</i></label>
+              </div>
+            </section>
+          </div>
+          <div class="workspace-footer">
+            <div><span>AUTOSAVE</span><strong id="autosave-status">Saved locally</strong></div>
+            <button type="button" id="print-workspace">Print executive view <span>↗</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolkit-panel">
+        <div class="toolkit-intro">
+          <span>CAMPAIGN TOOLKIT</span>
+          <h3>Build the<br>next message.</h3>
+        </div>
+        <div class="toolkit-builder">
+          <label>Rider segment
+            <select id="toolkit-segment">
+              <option value="commuter">Commuter</option>
+              <option value="gig">Gig worker</option>
+              <option value="premium">Premium rider</option>
+            </select>
+          </label>
+          <label>Channel
+            <select id="toolkit-channel">
+              <option value="Digital">Digital</option>
+              <option value="Retail">Retail</option>
+              <option value="On-ground">On-ground</option>
+            </select>
+          </label>
+          <article id="toolkit-output" aria-live="polite">
+            <small>COMMUTER / DIGITAL</small>
+            <strong>Made for your bike.</strong>
+            <p>Use the WhatsApp Tyre Finder to help riders discover the right fit, then confirm it through their trusted local shop.</p>
+            <button type="button" id="copy-brief">Copy message</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="brand-mark"><span></span></span>
+      <strong>EUROGRIP</strong>
+    </div>
+    <button type="button" data-open-sources>Sources & methodology <span>↗</span></button>
+  </footer>
+
+  <dialog class="sources-modal" aria-labelledby="sources-title">
+    <button class="modal-close" type="button" aria-label="Close sources">&times;</button>
+    <p class="kicker">SOURCE NOTES</p>
+    <h2 id="sources-title">Built from the case study.</h2>
+    <ul>
+      <li><strong>Primus Partners via Storyboard18</strong><span>January 2026</span></li>
+      <li><strong>Drivio</strong><span>May 2026 — estimates</span></li>
+      <li><strong>Fast Bikes India</strong><span>Source category in original case study</span></li>
+      <li><strong>TVS Srichakra FY26 results & NSE release</strong><span>19-store reference</span></li>
+    </ul>
+    <p class="source-warning">All targets, pilot cities, and budget allocation shown are proposals from the source case study unless explicitly sourced otherwise.</p>
+  </dialog>
+
+  <script src="common-nav.js" defer></script>
+  <script src="script.js"></script>
+  <script src="connected-tools.js"></script>
+</body>
+</html>

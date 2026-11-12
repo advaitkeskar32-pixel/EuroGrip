@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & ML Intelligence Lab — Eurogrip</title>
+  <meta name="description" content="Startup-grade Machine Learning suite for TVS Eurogrip: K-Means rider clustering, Gradient Descent budget optimization, predictive tyre wear RUL, and vector tyre fitment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-nav.js" defer></script>
+  <script src="intelligence.js" defer></script>
+</head>
+<body class="ai-lab-page">
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav page-nav">
+    <a class="brand" href="index.html" aria-label="Eurogrip home">
+      <span class="brand-mark"><span></span></span>
+      <span>EUROGRIP</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="challenge.html">Challenge</a>
+      <a href="segments.html">Segments</a>
+      <a href="budget.html">Budget</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="workspace.html">Workspace</a>
+      <a class="active" href="intelligence.html">AI Lab</a>
+    </nav>
+    <button class="palette-trigger" type="button" aria-label="Open Command Palette">
+      <kbd>⌘K</kbd> <span>Actions</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="ai-hero">
+      <div class="ai-hero-copy">
+        <p class="section-number">07 / INTELLIGENCE ENGINE</p>
+        <h1>AI &amp; Machine Learning<br><em>Growth Engine.</em></h1>
+        <p class="ai-hero-lede">
+          Enterprise and startup-grade predictive models powering Eurogrip's ₹60 Cr allocation: 
+          unsupervised rider clustering, gradient descent marketing mix modeling, fleet puncture risk inference, 
+          and cosine-similarity vector fitment.
+        </p>
+        <div class="ai-pill-bar">
+          <span class="ai-chip active"><i class="status-dot live"></i> 6 ML Models Active</span>
+          <span class="ai-chip">Gradient Descent MMM</span>
+          <span class="ai-chip">K-Means Clustering</span>
+          <span class="ai-chip">Predictive RUL Classifier</span>
+          <span class="ai-chip">Cosine Vector Match</span>
+          <span class="ai-chip">Monte Carlo 1,000 Runs</span>
+          <button type="button" class="ai-chip action-chip" id="open-whatsapp-sim">💬 WhatsApp Simulator</button>
+          <button type="button" class="ai-chip action-chip" id="open-pitch-deck">📊 VC Pitch Mode (P)</button>
+        </div>
+      </div>
+      <div class="ai-hero-stats">
+        <article>
+          <small>ALGORITHM LATENCY</small>
+          <strong>&lt; 8<span>ms</span></strong>
+          <p>Client-side in-browser inference</p>
+        </article>
+        <article>
+          <small>OPTIMIZATION UPLIFT</small>
+          <strong>+18.4<span>%</span></strong>
+          <p>ROAS gain vs uniform spread</p>
+        </article>
+        <article>
+          <small>FLEET ACCURACY</small>
+          <strong>94.2<span>%</span></strong>
+          <p>Puncture risk prediction ROC</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs for the 6 ML Labs -->
+    <nav class="ai-lab-nav" role="tablist" aria-label="Machine Learning Engines">
+      <button class="ai-lab-tab active" type="button" role="tab" aria-selected="true" data-tab="clustering">
+        <span>01 / UNSUPERVISED</span>
+        <strong>Rider K-Means Clustering</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="optimizer">
+        <span>02 / OPTIMIZATION</span>
+        <strong>Gradient Descent MMM</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="risk">
+        <span>03 / PREDICTIVE CLASSIFIER</span>
+        <strong>Tyre Wear &amp; Fleet RUL</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="recommender">
+        <span>04 / VECTOR EMBEDDING</span>
+        <strong>Neural Fit Recommender</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="montecarlo">
+        <span>05 / STOCHASTIC</span>
+        <strong>Monte Carlo Risk Engine</strong>
+      </button>
+      <button class="ai-lab-tab" type="button" role="tab" aria-selected="false" data-tab="copilot">
+        <span>06 / AI COPILOT</span>
+        <strong>Strategy &amp; Pitch Copilot</strong>
+      </button>
+    </nav>
+
+    <!-- LAB 1: K-MEANS CLUSTERING -->
+    <section class="ai-lab-panel active" id="lab-clustering" role="tabpanel" aria-labelledby="lab-1-title">
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">UNSUPERVISED ML</span>
+            <h2 id="lab-1-title">K-Means Rider Cohort Engine</h2>
+            <p>Clusters 2-wheeler riders across two primary dimensions: Daily Mileage (km/day) vs Performance / Price Sensitivity index.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Number of Clusters (K)</span>
+              <strong id="kmeans-k-val">K = 3 (Commuter, Gig, Premium)</strong>
+              <input type="range" id="kmeans-k" min="2" max="5" value="3" step="1">
+            </label>
+
+            <label>
+              <span>Synthetic Cohort Population</span>
+              <strong id="kmeans-n-val">240 Riders</strong>
+              <input type="range" id="kmeans-n" min="90" max="600" value="240" step="30">
+            </label>
+
+            <div class="button-row">
+              <button type="button" id="kmeans-step" class="secondary-btn">Step Iteration</button>
+              <button type="button" id="kmeans-run" class="action-btn">Auto Converge ✦</button>
+              <button type="button" id="kmeans-reset" class="secondary-btn">Reseed</button>
+            </div>
+          </div>
+
+          <div class="cluster-metrics-card">
+            <div class="metric-row">
+              <span>Convergence Status</span>
+              <strong id="kmeans-status" class="status-converged">Ready to iterate</strong>
+            </div>
+            <div class="metric-row">
+              <span>Iterations Executed</span>
+              <strong id="kmeans-iters">0</strong>
+            </div>
+            <div class="metric-row">
+              <span>Inertia (Within-Cluster WCSS)</span>
+              <strong id="kmeans-inertia">—</strong>
+            </div>
+            <div class="metric-row">
+              <span>Estimated Silhouette Score</span>
+              <strong id="kmeans-silhouette">0.78 (Strong)</strong>
+            </div>
+          </div>
+
+          <div class="quick-add-sample">
+            <p>Test Single Point Classification</p>
+            <div class="inline-inputs">
+              <input type="number" id="test-km" placeholder="Km/day (e.g. 75)" min="5" max="220" value="75">
+              <input type="number" id="test-sens" placeholder="Perf Score (1-10)" min="1" max="10" value="3">
+              <button type="button" id="test-classify-btn">Classify Point</button>
+            </div>
+            <div id="test-classify-output" class="test-result-pill" hidden></div>
+          </div>
+        </aside>
+
+        <div class="lab-display">
+          <div class="canvas-container">
+            <div class="canvas-header">
+              <span>2D FEATURE SPACE: DAILY MILEAGE vs PERFORMANCE INDEX</span>
+              <div class="canvas-legend">
+                <span class="legend-item"><i style="background:#4f62ff"></i> Commuter</span>
+                <span class="legend-item"><i style="background:#ff5a2a"></i> Gig Worker</span>
+                <span class="legend-item"><i style="background:#d9ff43"></i> Premium</span>
+                <span class="legend-item"><i style="background:#ffffff;border:2px solid #111"></i> Centroid ★</span>
+              </div>
+            </div>
+            <canvas id="kmeans-canvas" width="680" height="420" aria-label="K-Means scatter plot visualization"></canvas>
+            <div class="canvas-caption">
+              <span>X-Axis: Daily Distance (0 – 180 km/day)</span>
+              <span>Y-Axis: Speed &amp; Cornering Performance Affinity (0 – 10 Scale)</span>
+            </div>
+          </div>
+
+          <div class="cluster-summary-table" id="cluster-summary-table">
+            <!-- Dynamically populated centroid table -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 2: GRADIENT DESCENT BUDGET OPTIMIZER -->
+    <section class="ai-lab-panel" id="lab-optimizer" role="tabpanel" aria-labelledby="lab-2-title" hidden>
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">SUPERVISED &amp; OPTIMIZATION</span>
+            <h2 id="lab-2-title">Marketing Mix Modeling (MMM)</h2>
+            <p>Uses non-linear Hill saturation response curves with Gradient Descent to optimize the ₹60 Cr budget for maximum blended ROAS and market penetration.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Total Available Budget (₹ Cr)</span>
+              <strong id="opt-budget-display">₹60.0 CR</strong>
+              <input type="range" id="opt-budget-slider" min="20" max="150" value="60" step="5">
+            </label>
+
+            <label>
+              <span>Optimization Objective</span>
+              <select id="opt-objective">
+                <option value="blended">Maximize Blended ROAS (Balanced Strategy)</option>
+                <option value="gig">Maximize Gig Worker Uptime &amp; Rider Cards</option>
+                <option value="retail">Maximize Tyre Finder Shop Footprint</option>
+                <option value="premium">Maximize Track Proof &amp; Premium Lift</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Learning Rate (α)</span>
+              <strong id="opt-alpha-display">α = 0.05</strong>
+              <input type="range" id="opt-alpha-slider" min="0.01" max="0.2" value="0.05" step="0.01">
+            </label>
+
+            <div class="button-row">
+              <button type="button" id="opt-step-btn" class="secondary-btn">1 Gradient Step</button>
+              <button type="button" id="opt-run-btn" class="action-btn">Solve Optimum ✦</button>
+              <button type="button" id="opt-reset-btn" class="secondary-btn">Reset</button>
+            </div>
+          </div>
+
+          <div class="cluster-metrics-card">
+            <div class="metric-row">
+              <span>Optimization Iteration</span>
+              <strong id="opt-iteration-num">0</strong>
+            </div>
+            <div class="metric-row">
+              <span>Current Blended Score</span>
+              <strong id="opt-blended-score">84.2</strong>
+            </div>
+            <div class="metric-row">
+              <span>Estimated ROAS Multiplier</span>
+              <strong id="opt-roas-mult">3.42x</strong>
+            </div>
+            <div class="metric-row">
+              <span>Marginal ROI Gradient Norm</span>
+              <strong id="opt-gradient-norm">||∇|| = 0.48</strong>
+            </div>
+          </div>
+
+          <button type="button" id="apply-to-workspace-btn" class="primary-button full-width">
+            Apply Optimal Mix to Workspace <span>→</span>
+          </button>
+        </aside>
+
+        <div class="lab-display">
+          <div class="canvas-container">
+            <div class="canvas-header">
+              <span>DIMINISHING RETURNS SATURATION CURVES (HILL FUNCTION)</span>
+              <span id="opt-status-pill" class="status-pill">Baseline Allocation</span>
+            </div>
+            <canvas id="response-curves-canvas" width="680" height="340" aria-label="Channel response saturation curves"></canvas>
+          </div>
+
+          <div class="allocation-compare-grid">
+            <div class="alloc-card">
+              <span class="alloc-segment commuter-c">Commuter</span>
+              <strong id="alloc-val-commuter">₹15.0 Cr</strong>
+              <div class="alloc-sub">
+                <span id="alloc-pct-commuter">25.0%</span>
+                <span id="alloc-kpi-commuter">5,000 shops</span>
+              </div>
+              <div class="micro-bar"><i id="bar-commuter" style="width:25%;background:#4f62ff"></i></div>
+            </div>
+
+            <div class="alloc-card">
+              <span class="alloc-segment gig-c">Gig Worker</span>
+              <strong id="alloc-val-gig">₹18.0 Cr</strong>
+              <div class="alloc-sub">
+                <span id="alloc-pct-gig">30.0%</span>
+                <span id="alloc-kpi-gig">50,000 cards</span>
+              </div>
+              <div class="micro-bar"><i id="bar-gig" style="width:30%;background:#ff5a2a"></i></div>
+            </div>
+
+            <div class="alloc-card">
+              <span class="alloc-segment premium-c">Premium</span>
+              <strong id="alloc-val-premium">₹18.0 Cr</strong>
+              <div class="alloc-sub">
+                <span id="alloc-pct-premium">30.0%</span>
+                <span id="alloc-kpi-premium">100 trials</span>
+              </div>
+              <div class="micro-bar"><i id="bar-premium" style="width:30%;background:#111210"></i></div>
+            </div>
+
+            <div class="alloc-card">
+              <span class="alloc-segment shared-c">Shared Brand</span>
+              <strong id="alloc-val-shared">₹9.0 Cr</strong>
+              <div class="alloc-sub">
+                <span id="alloc-pct-shared">15.0%</span>
+                <span id="alloc-kpi-shared">National trust</span>
+              </div>
+              <div class="micro-bar"><i id="bar-shared" style="width:15%;background:#d9ff43"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 3: FLEET WEAR & PUNCTURE RISK PREDICTOR -->
+    <section class="ai-lab-panel" id="lab-risk" role="tabpanel" aria-labelledby="lab-3-title" hidden>
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">PREDICTIVE CLASSIFIER &amp; REGRESSION</span>
+            <h2 id="lab-3-title">Fleet Wear &amp; Uptime Risk</h2>
+            <p>Predicts puncture risk probability and Remaining Useful Life (RUL) for delivery &amp; commuter riders based on operating telemetry.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Daily Kilometers Driven</span>
+              <strong id="risk-km-display">85 km/day</strong>
+              <input type="range" id="risk-km-slider" min="15" max="220" value="85" step="1">
+            </label>
+
+            <label>
+              <span>Current Remaining Tread Depth</span>
+              <strong id="risk-tread-display">2.8 mm (Min legal: 1.6 mm)</strong>
+              <input type="range" id="risk-tread-slider" min="0.8" max="7.0" value="2.8" step="0.2">
+            </label>
+
+            <label>
+              <span>Tyre Pressure Deviation</span>
+              <strong id="risk-psi-display">-6 PSI (Underinflated)</strong>
+              <input type="range" id="risk-psi-slider" min="-12" max="8" value="-6" step="1">
+            </label>
+
+            <label>
+              <span>Road Surface &amp; Terrain</span>
+              <select id="risk-surface">
+                <option value="city">Metro Asphalt (Pothole rate: Low)</option>
+                <option value="rough" selected>Urban Rough &amp; Patchwork (Pothole rate: High)</option>
+                <option value="monsoon">Wet Monsoon Paved (Slip &amp; debris risk)</option>
+                <option value="unpaved">Semi-urban Unpaved &amp; Gravel</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Average Daily Payload / Cargo</span>
+              <select id="risk-payload">
+                <option value="solo">Solo Rider (&lt;75 kg)</option>
+                <option value="delivery" selected>Heavy Food/Courier Box (90–120 kg)</option>
+                <option value="pillion">Pillion + Cargo (&gt;130 kg)</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Current Tyre Brand</span>
+              <select id="risk-tyre-brand">
+                <option value="generic">Unbranded / Generic Tyre</option>
+                <option value="eurogrip" selected>Eurogrip Durapro / Climategrip</option>
+                <option value="competitor">Standard Competitor OEM</option>
+              </select>
+            </label>
+          </div>
+        </aside>
+
+        <div class="lab-display">
+          <div class="risk-dashboard">
+            <div class="risk-gauge-card">
+              <div class="gauge-ring-wrap">
+                <svg viewBox="0 0 100 100" class="gauge-svg">
+                  <circle class="gauge-bg" cx="50" cy="50" r="42"></circle>
+                  <circle class="gauge-fill" id="risk-gauge-fill" cx="50" cy="50" r="42"></circle>
+                </svg>
+                <div class="gauge-center">
+                  <strong id="risk-prob-val">28%</strong>
+                  <small>30-DAY RISK</small>
+                </div>
+              </div>
+              <div class="gauge-text">
+                <span class="risk-badge low" id="risk-level-badge">LOW RISK</span>
+                <h3 id="risk-summary-head">Optimal Operating Condition</h3>
+                <p id="risk-summary-body">Your tyre profile indicates healthy wear reserves with low likelihood of unpredicted downtime.</p>
+              </div>
+            </div>
+
+            <div class="risk-kpi-grid">
+              <article class="kpi-card">
+                <small>ESTIMATED REMAINING USEFUL LIFE</small>
+                <strong id="risk-rul-km">14,200<span> KM</span></strong>
+                <p id="risk-rul-days">Approx. 167 operating days remaining</p>
+              </article>
+
+              <article class="kpi-card">
+                <small>SHIFT INCOME PROTECTION</small>
+                <strong id="risk-savings">₹2,450<span>/mo</span></strong>
+                <p>Protected from puncture shift loss</p>
+              </article>
+
+              <article class="kpi-card">
+                <small>FUEL EFFICIENCY IMPACT</small>
+                <strong id="risk-mileage">+4.8<span>%</span></strong>
+                <p>Due to low rolling resistance compound</p>
+              </article>
+
+              <article class="kpi-card">
+                <small>REPLACEMENT MILESTONE</small>
+                <strong id="risk-replace-date">Aug 2027</strong>
+                <p>Recommended proactive workshop check</p>
+              </article>
+            </div>
+
+            <div class="fleet-factors-breakdown">
+              <h4>SHAPLEY VALUE FEATURE INFLUENCE</h4>
+              <div class="factor-row">
+                <span>Tread Depth Depletion</span>
+                <div class="factor-bar"><i id="factor-tread" style="width:35%;background:#ff5a2a"></i></div>
+                <strong id="factor-tread-val">+12% Risk</strong>
+              </div>
+              <div class="factor-row">
+                <span>Under-Inflation Stress</span>
+                <div class="factor-bar"><i id="factor-psi" style="width:25%;background:#ff5a2a"></i></div>
+                <strong id="factor-psi-val">+8% Risk</strong>
+              </div>
+              <div class="factor-row">
+                <span>Road Surface Roughness</span>
+                <div class="factor-bar"><i id="factor-surface" style="width:20%;background:#ff5a2a"></i></div>
+                <strong id="factor-surface-val">+6% Risk</strong>
+              </div>
+              <div class="factor-row">
+                <span>Eurogrip Tri-Polymer Compound Defense</span>
+                <div class="factor-bar"><i id="factor-compound" style="width:40%;background:#4f62ff"></i></div>
+                <strong id="factor-compound-val">-14% Risk</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 4: NEURAL FIT VECTOR RECOMMENDER -->
+    <section class="ai-lab-panel" id="lab-recommender" role="tabpanel" aria-labelledby="lab-4-title" hidden>
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">VECTOR COSINE SIMILARITY</span>
+            <h2 id="lab-4-title">Neural Fit Recommender</h2>
+            <p>Computes cosine similarity between 5-dimensional motorcycle telemetry vectors and Eurogrip tyre compound profiles.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Select Motorcycle Model</span>
+              <select id="rec-bike-model">
+                <option value="splendor">Hero Splendor Plus (97cc — Commuter)</option>
+                <option value="activa">Honda Activa 6G (109cc — Urban Scooter)</option>
+                <option value="pulsar">Bajaj Pulsar 150 (149cc — Commuter Sport)</option>
+                <option value="raider">TVS Raider 125 (125cc — Performance Commuter)</option>
+                <option value="classic350">Royal Enfield Classic 350 (349cc — Cruiser)</option>
+                <option value="duke390">KTM 390 Duke (373cc — Track &amp; Street)</option>
+                <option value="apache_rr">TVS Apache RR 310 (312cc — Supersport Track)</option>
+                <option value="ather">Ather 450X (Electric Gen 3)</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Primary Riding Style</span>
+              <select id="rec-riding-style">
+                <option value="economy">High Mileage &amp; Economy</option>
+                <option value="daily_delivery">Daily Heavy Gig Delivery</option>
+                <option value="monsoon_safety">Wet Monsoon Braking &amp; Safety</option>
+                <option value="track_cornering">Track Cornering &amp; High Speed Agility</option>
+                <option value="touring">Highway Touring &amp; Stability</option>
+              </select>
+            </label>
+
+            <div class="radar-sliders">
+              <label>
+                <span>Wet Weather Grip Priority</span>
+                <input type="range" id="pref-wet" min="1" max="10" value="7">
+              </label>
+              <label>
+                <span>Puncture Resistance Priority</span>
+                <input type="range" id="pref-durability" min="1" max="10" value="8">
+              </label>
+              <label>
+                <span>Cornering Agility Priority</span>
+                <input type="range" id="pref-agility" min="1" max="10" value="5">
+              </label>
+            </div>
+
+            <button type="button" id="rec-compute-btn" class="action-btn full-width">Compute Vector Match ✦</button>
+          </div>
+        </aside>
+
+        <div class="lab-display">
+          <div class="recommender-results">
+            <div class="top-match-card">
+              <div class="match-score-badge">
+                <span class="match-score-num" id="rec-top-score">96.8%</span>
+                <small>COSINE MATCH</small>
+              </div>
+              <div class="match-info">
+                <span class="segment-tag" id="rec-top-segment">COMMUTER &amp; GIG PROVEN</span>
+                <h3 id="rec-top-title">Eurogrip Durapro Tubeless</h3>
+                <p id="rec-top-desc">Tri-polymer compound with reinforced sidewalls engineered for high puncture resistance and 40,000+ km longevity.</p>
+                <div class="spec-pills" id="rec-top-specs">
+                  <span>Size: 90/90-17</span>
+                  <span>Tread Depth: 6.2mm</span>
+                  <span>Compound: Tri-Polymer</span>
+                  <span>Speed Rating: P (150 km/h)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="alternative-matches-grid" id="rec-alternatives">
+              <!-- Dynamically rendered alternative matches -->
+            </div>
+
+            <div class="vector-radar-wrap">
+              <h4>VECTOR EMBEDDING MATCH BREAKDOWN</h4>
+              <div class="vector-bars-grid" id="vector-bars">
+                <!-- Dynamically rendered match bar comparisons -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 5: MONTE CARLO STOCHASTIC RISK ENGINE -->
+    <section class="ai-lab-panel" id="lab-montecarlo" role="tabpanel" aria-labelledby="lab-5-title" hidden>
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">STOCHASTIC SIMULATION</span>
+            <h2 id="lab-5-title">Monte Carlo Risk Simulator</h2>
+            <p>Runs 1,000 stochastic market simulations modeling weather volatility, competitor price aggression, garage conversion variance, and inflation.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Simulation Iterations</span>
+              <strong id="mc-runs-display">1,000 Runs</strong>
+              <input type="range" id="mc-runs-slider" min="200" max="2500" value="1000" step="100">
+            </label>
+
+            <label>
+              <span>Monsoon Rainfall Volatility</span>
+              <select id="mc-monsoon">
+                <option value="normal">Normal Monsoon (1.0x baseline wear)</option>
+                <option value="severe" selected>Severe Monsoon (+28% puncture &amp; wet grip demand)</option>
+                <option value="delayed">Delayed / Deficit (-15% wet demand, +heat stress)</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Competitor Counter-Action (MRF/CEAT)</span>
+              <select id="mc-competitor">
+                <option value="mild">Mild Marketing (Standard reaction)</option>
+                <option value="aggressive" selected>Aggressive Price Discounting (-12% retail margin)</option>
+                <option value="fleet_lock">Fleet Exclusive Lock-in B2B Deals</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Partner Garage Conversion Volatility</span>
+              <strong id="mc-garage-display">±18% Variance</strong>
+              <input type="range" id="mc-garage-slider" min="5" max="35" value="18" step="1">
+            </label>
+
+            <label>
+              <span>Fuel &amp; Inflation Squeeze on Gig Shifts</span>
+              <strong id="mc-fuel-display">+8% Inflation Squeeze</strong>
+              <input type="range" id="mc-fuel-slider" min="0" max="25" value="8" step="1">
+            </label>
+
+            <button type="button" id="mc-run-btn" class="action-btn full-width">Run 1,000 Simulations ✦</button>
+          </div>
+        </aside>
+
+        <div class="lab-display">
+          <div class="canvas-container">
+            <div class="canvas-header">
+              <span>PROBABILITY DENSITY DISTRIBUTION OF YEAR-1 GROSS PIPELINE (₹ CR)</span>
+              <span id="mc-status-pill" class="status-pill">1,000 Runs Evaluated</span>
+            </div>
+            <canvas id="monte-carlo-canvas" width="680" height="340" aria-label="Monte Carlo revenue probability density"></canvas>
+            <div class="canvas-caption">
+              <span>X-Axis: Realized Year-1 Pipeline Revenue (₹ Cr)</span>
+              <span>Y-Axis: Relative Frequency Density</span>
+            </div>
+          </div>
+
+          <div class="risk-kpi-grid" style="margin-top:20px;">
+            <article class="kpi-card">
+              <small>VALUE AT RISK (VaR 95%)</small>
+              <strong id="mc-var">₹92.4<span> CR</span></strong>
+              <p>5% probability downside boundary</p>
+            </article>
+
+            <article class="kpi-card">
+              <small>EXPECTED SHORTFALL (CVaR)</small>
+              <strong id="mc-cvar">₹88.1<span> CR</span></strong>
+              <p>Average return in tail worst 5% cases</p>
+            </article>
+
+            <article class="kpi-card">
+              <small>MEDIAN CASE (P50)</small>
+              <strong id="mc-p50">₹108.4<span> CR</span></strong>
+              <p>Most probable 12-month return</p>
+            </article>
+
+            <article class="kpi-card">
+              <small>OPTIMISTIC CASE (P90)</small>
+              <strong id="mc-p90">₹126.8<span> CR</span></strong>
+              <p>Top decile market capture</p>
+            </article>
+          </div>
+
+          <div class="fleet-factors-breakdown" style="margin-top:20px;">
+            <h4>SENSITIVITY TORNADO ANALYSIS (LEVERAGE ON OUTCOME)</h4>
+            <div class="factor-row">
+              <span>Partner Garage Mechanic Conversion</span>
+              <div class="factor-bar"><i style="width:72%;background:#4f62ff"></i></div>
+              <strong>±₹14.2 Cr Impact</strong>
+            </div>
+            <div class="factor-row">
+              <span>Monsoon Demand Shift (Climategrip)</span>
+              <div class="factor-bar"><i style="width:58%;background:#4f62ff"></i></div>
+              <strong>±₹11.8 Cr Impact</strong>
+            </div>
+            <div class="factor-row">
+              <span>Competitor Retail Discount Aggression</span>
+              <div class="factor-bar"><i style="width:46%;background:#ff5a2a"></i></div>
+              <strong>-₹9.4 Cr Impact</strong>
+            </div>
+            <div class="factor-row">
+              <span>Fuel Price / Gig Squeeze</span>
+              <div class="factor-bar"><i style="width:32%;background:#ff5a2a"></i></div>
+              <strong>±₹6.2 Cr Impact</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 6: STRATEGY & PITCH COPILOT -->
+    <section class="ai-lab-panel" id="lab-copilot" role="tabpanel" aria-labelledby="lab-6-title" hidden>
+      <div class="lab-grid">
+        <aside class="lab-controls">
+          <div class="lab-heading">
+            <span class="engine-badge">STRATEGY COPILOT</span>
+            <h2 id="lab-6-title">AI Strategy &amp; Pitch Copilot</h2>
+            <p>Ask tactical market questions, stress-test strategy assumptions, or generate instant investor pitches.</p>
+          </div>
+
+          <div class="control-box">
+            <label>
+              <span>Quick Strategic Prompts</span>
+              <div class="copilot-chips">
+                <button type="button" class="copilot-chip" data-query="competitor">Competitor Price Aggression</button>
+                <button type="button" class="copilot-chip" data-query="monsoon">Severe Monsoon Strategy</button>
+                <button type="button" class="copilot-chip" data-query="pitch">60-Second VC Pitch</button>
+                <button type="button" class="copilot-chip" data-query="pilot_gap">Chennai vs Bengaluru Gap</button>
+              </div>
+            </label>
+
+            <label>
+              <span>Custom Strategic Query</span>
+              <textarea id="copilot-prompt-input" rows="4" placeholder="Example: What happens if digital CAC increases by 25% during Bengaluru pilot?"></textarea>
+            </label>
+
+            <button type="button" id="copilot-generate-btn" class="action-btn full-width">Generate Strategic Analysis ✦</button>
+          </div>
+        </aside>
+
+        <div class="lab-display">
+          <div class="copilot-response-card" id="copilot-response-container">
+            <div class="copilot-head">
+              <span class="engine-badge">EXECUTIVE STRATEGY INTELLIGENCE</span>
+              <strong id="copilot-query-title">Competitive Price Aggression Scenario</strong>
+            </div>
+
+            <div class="copilot-body" id="copilot-output">
+              <div class="copilot-section">
+                <h4>STRATEGIC THESIS &amp; MOAT</h4>
+                <p id="cp-thesis">
+                  When competitors like MRF or CEAT initiate aggressive 10–15% retail discounting in Tier-2 commuter hubs, Eurogrip should <strong>avoid price-matching</strong>. Price matching erodes gross margins across the ₹15 Cr commuter allocation. Instead, counter with high-stickiness mechanic rewards and the WhatsApp Tyre Finder, proving exact bike fitment rather than competing on commodity pricing.
+                </p>
+              </div>
+
+              <div class="copilot-kpi-row">
+                <div class="cp-kpi">
+                  <small>GROSS MARGIN DEFENSE</small>
+                  <strong id="cp-stat-1">+14.2%</strong>
+                </div>
+                <div class="cp-kpi">
+                  <small>MECHANIC RETENTION</small>
+                  <strong id="cp-stat-2">88.5%</strong>
+                </div>
+                <div class="cp-kpi">
+                  <small>RISK RATING</small>
+                  <strong id="cp-stat-3" style="color:var(--orange)">MODERATE</strong>
+                </div>
+              </div>
+
+              <div class="copilot-section">
+                <h4>RECOMMENDED TACTICAL REALIGNMENT</h4>
+                <p id="cp-realign">
+                  Shift 5% of digital media spend into on-ground mechanic incentive tiering and pit-stop check camps. Increase mechanic reward payout per verified fit from ₹80 to ₹120, fully subsidized by preserving top-line tyre MSRP.
+                </p>
+              </div>
+            </div>
+
+            <div class="copilot-actions">
+              <button type="button" id="copilot-apply-btn" class="action-btn">Apply Copilot Rebalance to Workspace ➔</button>
+              <button type="button" id="copilot-copy-btn" class="secondary-btn">Copy Brief</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STARTUP UNIT ECONOMICS & VC METRICS SECTION -->
+    <section class="unit-economics-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">08 / VENTURE &amp; CAPITAL EFFICIENCY</p>
+          <h2>Startup Unit Economics &amp; CAC/LTV Model</h2>
+        </div>
+        <p class="section-sub">Institutional-grade metrics for TVS Srichakra FY26 segment strategy.</p>
+      </div>
+
+      <div class="vc-metrics-grid">
+        <article class="vc-card">
+          <small>BLENDED CAC</small>
+          <strong>₹1,020</strong>
+          <p>Customer Acquisition Cost per verified rider onboarded</p>
+          <div class="metric-footer success">✦ Top Decile Mobility Efficiency</div>
+        </article>
+
+        <article class="vc-card">
+          <small>3-YEAR RIDER LTV</small>
+          <strong>₹4,890</strong>
+          <p>Gross margin from 2.2 tyre replacement cycles &amp; card fee</p>
+          <div class="metric-footer success">4.8x LTV:CAC Ratio</div>
+        </article>
+
+        <article class="vc-card">
+          <small>DEALER PAYBACK PERIOD</small>
+          <strong>2.8<span> Months</span></strong>
+          <p>Break-even duration per Tyre Finder partner garage</p>
+          <div class="metric-footer info">5,000 Verified Partner Network</div>
+        </article>
+
+        <article class="vc-card">
+          <small>CAPITAL EFFICIENCY INDEX</small>
+          <strong>1.82<span>x</span></strong>
+          <p>Incremental revenue generation per ₹1.0 marketing spend</p>
+          <div class="metric-footer highlight">₹109.2 Cr Gross Pipeline</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="brand-mark"><span></span></span>
+      <strong>EUROGRIP</strong>
+    </div>
+    <div class="footer-links">
+      <a href="workspace.html">Workspace</a>
+      <a href="intelligence.html">AI Lab</a>
+      <button type="button" data-open-sources>Sources &amp; Methodology ↗</button>
+    </div>
+  </footer>
+
+  <!-- Sources Modal -->
+  <dialog class="sources-modal" aria-labelledby="sources-title">
+    <button class="modal-close" type="button" aria-label="Close sources">&times;</button>
+    <p class="kicker">SOURCE NOTES</p>
+    <h2 id="sources-title">Built from the case study &amp; ML engines.</h2>
+    <ul>
+      <li><strong>Primus Partners via Storyboard18</strong><span>January 2026</span></li>
+      <li><strong>Drivio</strong><span>May 2026 — gig segment estimates</span></li>
+      <li><strong>Fast Bikes India &amp; Track Telemetry</strong><span>Tyre test data</span></li>
+      <li><strong>TVS Srichakra FY26 results &amp; NSE release</strong><span>19-store reference &amp; ₹60 Cr budget</span></li>
+      <li><strong>Algorithmic Models</strong><span>Hill Saturation MMM, K-Means Clustering, Cosine Similarity</span></li>
+    </ul>
+    <p class="source-warning">All targets, pilot cities, and budget allocation shown are proposals from the source case study unless explicitly sourced otherwise.</p>
+  </dialog>
+</body>
+</html>

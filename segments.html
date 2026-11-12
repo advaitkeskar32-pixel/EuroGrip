@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rider Segments — Eurogrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="common-nav.js" defer></script><script src="segments-page.js" defer></script>
+</head>
+<body>
+  <header class="nav page-nav">
+    <a class="brand" href="index.html"><span class="brand-mark"><span></span></span><span>EUROGRIP</span></a>
+    <nav>
+      <a href="challenge.html">Challenge</a>
+      <a class="active" href="segments.html">Segments</a>
+      <a href="budget.html">Budget</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="workspace.html">Workspace</a>
+      <a href="intelligence.html">AI Lab</a>
+    </nav>
+    <button class="palette-trigger" type="button" aria-label="Command Palette">
+      <kbd>⌘K</kbd> <span>Actions</span>
+    </button>
+  </header>
+  <main>
+    <section class="segment-route">
+      <aside><p>02 / SEGMENT STRATEGY</p><button class="route-tab active" data-segment="commuter"><span>01</span>Commuter</button><button class="route-tab" data-segment="gig"><span>02</span>Gig worker</button><button class="route-tab" data-segment="premium"><span>03</span>Premium</button></aside>
+      <div class="segment-route-copy"><p id="route-role">DEFEND / RELIABILITY</p><h1 id="route-promise">Made for<br>your bike.</h1><p id="route-description">The right tyre is confidence that fits, functions and lasts for the ride ahead.</p><strong id="route-budget">₹15 CR</strong></div>
+      <div class="segment-route-visual"><div></div><span id="route-word">RANGE</span></div>
+      <div class="route-activation" id="route-activation"><article><span>01 / DIGITAL</span><strong>Tyre finder on WhatsApp</strong></article><article><span>02 / RETAIL</span><strong>Finder in every shop + mechanic rewards</strong></article><article><span>03 / ON-GROUND</span><strong>Free tyre check camps</strong></article></div>
+    </section>
+    <section class="rider-finder" aria-labelledby="rider-finder-title">
+      <div>
+        <p class="section-number">RIDER TOOL</p>
+        <h2 id="rider-finder-title">What matters most on your ride?</h2>
+      </div>
+      <div class="rider-finder-controls">
+        <label>Primary use
+          <select id="rider-use"><option value="commuter">Daily commuting</option><option value="gig">Delivery or work rides</option><option value="premium">Weekend or performance rides</option></select>
+        </label>
+        <label>Priority
+          <select id="rider-priority"><option value="fit">Easy tyre selection</option><option value="uptime">Minimum downtime</option><option value="proof">Performance proof</option></select>
+        </label>
+        <button id="find-rider-fit" type="button">Find my rider fit <span>→</span></button>
+      </div>
+      <div class="rider-finder-result" id="rider-finder-result" aria-live="polite">
+        <span>YOUR RECOMMENDED FIT</span>
+        <strong>Commuter / Made for your bike</strong>
+        <p>Choose a tyre after checking your bike size, riding conditions and local service support.</p>
+        <a href="intelligence.html#recommender" class="inline-ai-link">Run Deep 5-Vector Motorcycle Match in AI Lab ↗</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

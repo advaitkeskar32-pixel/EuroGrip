@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Budget &amp; Venture Economics — Eurogrip</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-nav.js" defer></script>
+  <script src="cmd-palette.js" defer></script>
+</head>
+<body>
+  <header class="nav page-nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><span></span></span>
+      <span>EUROGRIP</span>
+    </a>
+    <nav>
+      <a href="challenge.html">Challenge</a>
+      <a href="segments.html">Segments</a>
+      <a class="active" href="budget.html">Budget</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="workspace.html">Workspace</a>
+      <a href="intelligence.html">AI Lab</a>
+    </nav>
+    <button class="palette-trigger" type="button" aria-label="Command Palette">
+      <kbd>⌘K</kbd> <span>Actions</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="budget-route">
+      <div class="route-title">
+        <p class="section-number">03 / THE INVESTMENT</p>
+        <h1 id="budget-hero-title">₹60 crore.<br><em>One focused year.</em></h1>
+        <p class="opt-tag" id="budget-opt-tag" style="margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--blue);">Synced with Baseline Case Study</p>
+      </div>
+
+      <div class="budget-route-grid">
+        <article>
+          <span id="budget-segment-total">SEGMENT ALLOCATION / ₹51 CR</span>
+          <div class="mini-bar">
+            <label>Commuter <strong id="b-val-commuter">₹15.0 CR</strong></label>
+            <i id="b-bar-commuter" style="width:25%;background:#4f62ff"></i>
+          </div>
+          <div class="mini-bar">
+            <label>Gig worker <strong id="b-val-gig">₹18.0 CR</strong></label>
+            <i id="b-bar-gig" style="width:30%;background:#ff5a2a"></i>
+          </div>
+          <div class="mini-bar">
+            <label>Premium <strong id="b-val-premium">₹18.0 CR</strong></label>
+            <i id="b-bar-premium" style="width:30%;background:#111210"></i>
+          </div>
+          <div class="mini-bar">
+            <label>Shared brand <strong id="b-val-shared">₹9.0 CR</strong></label>
+            <i id="b-bar-shared" style="width:15%;background:#d9ff43"></i>
+          </div>
+        </article>
+
+        <article>
+          <span>CHANNEL MIX / 100%</span>
+          <div class="budget-donut"></div>
+          <p><i></i>Digital <strong>40%</strong></p>
+          <p><i class="orange-dot"></i>Retail <strong>30%</strong></p>
+          <p><i class="black-dot"></i>On-ground <strong>30%</strong></p>
+        </article>
+      </div>
+
+      <!-- Startup Unit Economics & LTV/CAC Card -->
+      <div class="budget-unit-economics">
+        <div class="b-ue-head">
+          <div>
+            <span class="section-number">VENTURE &amp; CAPITAL ALLOCATION</span>
+            <h2>Startup Unit Economics</h2>
+          </div>
+          <a href="intelligence.html#optimizer" class="b-ue-cta">Rebalance with ML Gradient Descent ✦</a>
+        </div>
+        <div class="b-ue-grid">
+          <div class="b-ue-card">
+            <span class="ue-badge commuter-b">COMMUTER</span>
+            <h3 id="cac-commuter">₹860 <span>CAC</span></h3>
+            <p>Acquisition cost via WhatsApp Tyre Finder &amp; local garage mechanics.</p>
+            <div class="ue-stat"><strong id="ltv-commuter">₹3,800 LTV</strong> · <b id="ratio-commuter">4.4x Ratio</b></div>
+          </div>
+          <div class="b-ue-card">
+            <span class="ue-badge gig-b">GIG WORKER</span>
+            <h3 id="cac-gig">₹1,120 <span>CAC</span></h3>
+            <p>Targeted onboarding with regional video ads and Pit-Stop Rider Cards.</p>
+            <div class="ue-stat"><strong id="ltv-gig">₹5,600 LTV</strong> · <b id="ratio-gig">5.0x Ratio</b></div>
+          </div>
+          <div class="b-ue-card">
+            <span class="ue-badge premium-b">PREMIUM</span>
+            <h3 id="cac-premium">₹2,200 <span>CAC</span></h3>
+            <p>Track day demos, creator proof and 19 dedicated brand experience stores.</p>
+            <div class="ue-stat"><strong id="ltv-premium">₹11,400 LTV</strong> · <b id="ratio-premium">5.2x Ratio</b></div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <span>ASSUMPTION</span>
+        The investment model is interconnected with TVS Srichakra FY26 revenue benchmarks, real-time K-Means cohort ratios, and Gradient Descent MMM optimization.
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const connectBudgetStore = () => {
+        if (!window.EurogripStore) return false;
+        window.EurogripStore.subscribe((state) => {
+          const b = state.budget;
+          const alloc = state.allocation;
+          const cSpend = ((alloc.commuter / 100) * b).toFixed(1);
+          const gSpend = ((alloc.gig / 100) * b).toFixed(1);
+          const pSpend = ((alloc.premium / 100) * b).toFixed(1);
+          const sSpend = ((alloc.shared / 100) * b).toFixed(1);
+          const directSpend = (Number(cSpend) + Number(gSpend) + Number(pSpend)).toFixed(1);
+
+          document.getElementById("budget-hero-title").innerHTML = `₹${b} crore.<br><em>One focused year.</em>`;
+          document.getElementById("budget-opt-tag").textContent = `Synced with: ${state.appliedOptimization}`;
+          document.getElementById("budget-segment-total").textContent = `SEGMENT ALLOCATION / ₹${directSpend} CR`;
+
+          document.getElementById("b-val-commuter").textContent = `₹${cSpend} CR`;
+          document.getElementById("b-bar-commuter").style.width = `${alloc.commuter}%`;
+
+          document.getElementById("b-val-gig").textContent = `₹${gSpend} CR`;
+          document.getElementById("b-bar-gig").style.width = `${alloc.gig}%`;
+
+          document.getElementById("b-val-premium").textContent = `₹${pSpend} CR`;
+          document.getElementById("b-bar-premium").style.width = `${alloc.premium}%`;
+
+          document.getElementById("b-val-shared").textContent = `₹${sSpend} CR`;
+          document.getElementById("b-bar-shared").style.width = `${alloc.shared}%`;
+
+          // Scale CAC/LTV dynamically
+          const scale = b / 60;
+          document.getElementById("cac-commuter").innerHTML = `₹${Math.round(860 * scale)} <span>CAC</span>`;
+          document.getElementById("cac-gig").innerHTML = `₹${Math.round(1120 * scale)} <span>CAC</span>`;
+          document.getElementById("cac-premium").innerHTML = `₹${Math.round(2200 * scale)} <span>CAC</span>`;
+        });
+        return true;
+      };
+      if (!connectBudgetStore()) {
+        window.addEventListener("eurogrip:store-ready", connectBudgetStore, { once: true });
+      }
+    });
+  </script>
+</body>
+</html>
